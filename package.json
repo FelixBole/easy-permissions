@@ -1,0 +1,26 @@
+{
+	"name": "easy-permissions",
+	"version": "1.0.0",
+	"description": "A simple and flexible permissions management system for javascript applications.",
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "tsc",
+		"test": "jest"
+	},
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE.md"
+	],
+	"keywords": [
+		"permissions"
+	],
+	"author": "Felix Bole <felix.slax@gmail.com>",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/jest": "^29.5.12",
+		"jest": "^29.7.0",
+		"ts-jest": "^29.2.4",
+		"typescript": "^5.5.4"
+	}
+}
