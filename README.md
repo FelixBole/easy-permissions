@@ -6,7 +6,7 @@ This module provides a reusable system for managing roles and permissions within
 
 This is a very simple package targeted at small projects. If you want something more robust that can directly integrate with larger apps and databases, you should consider looking at something like [casl](https://github.com/stalniy/casl).
 
-If you need something quick and easy to setup, than easy-permissions can do the trick.
+If you need something quick and easy to setup, then ez-perms can do the trick.
 
 ## Table of Contents
 
@@ -122,23 +122,23 @@ const user = {
 const canEditDocument = roleManager.hasPermission(user, "edit:documents:1234"); // true
 
 // Check if the user can view any document
-const canViewDocuments = roleManager.hasPermission(user, "view:documents"); // true (if we consider the Assigning Roles section ant the user has the 'editor' role)
+const canViewDocuments = roleManager.hasPermission(user, "view:documents"); // true (if we consider the Assigning Roles section and the user has the 'editor' role)
 ```
 
 ## API Reference
 
 ### `PermissionMapper`
 
-- **registerPermissions(permissionData: (Slax.Permissions.Permission | string)[])**
+- **registerPermissions(permissionData: (Permission | string)[])**
   - Registers a list of permissions, which can be either objects or formatted strings.
 
 ### `RoleManager`
 
-- **createRole(role: Slax.Permissions.Role)**
+- **createRole(role: Role)**
   - Creates a new role with a unique identifier.
-- **assignPermissionToRole(roleId: string, permission: Slax.Permissions.Permission)**
+- **assignPermissionToRole(roleId: string, permission: Permission)**
   - Assigns a specific permission to a role.
-- **hasPermission(user: { roles: (Slax.Permissions.Role | string)[], permissions: (Slax.Permissions.Permission | string)[] }, permissionToCheck: string | Slax.Permissions.Permission): boolean**
+- **hasPermission(user: { roles: (Role | string)[], permissions: (Permission | string)[] }, permissionToCheck: string | Permission): boolean**
   - Checks if the given user object has the specified permission.
 
 ## License
