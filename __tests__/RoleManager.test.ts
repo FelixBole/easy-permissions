@@ -23,6 +23,32 @@ describe("RoleManager", () => {
 		expect(storedRole).toEqual(role);
 	});
 
+	test("should create a role with string permissions", () => {
+		const role = {
+			id: "editor",
+			name: "Editor",
+			permissions: ["view:documents", "edit:documents:*"],
+		};
+		roleManager.createRole(role);
+
+		const storedRole = roleManager.getRole("editor");
+		const expectedPermissions = [
+			{
+				id: "view:documents",
+				action: "view",
+				resource: "documents",
+				resourceScope: undefined,
+			},
+			{
+				id: "edit:documents:*",
+				action: "edit",
+				resource: "documents",
+				resourceScope: "*",
+			},
+		];
+		expect(storedRole?.permissions).toEqual(expectedPermissions);
+	})
+
 	test("should not create a duplicate role", () => {
 		const role = { id: "admin", name: "Admin", permissions: [] };
 		roleManager.createRole(role);
@@ -105,5 +131,19 @@ describe("RoleManager", () => {
 
 		const canViewDocuments = roleManager.hasPermission(user, "view:documents");
 		expect(canViewDocuments).toBe(false);
+	});
+
+	test("should authorize a super admin with a wildcard permission", () => {
+		const role = { id: "super_admin", name: "Super Admin", permissions: [] };
+		roleManager.createRole(role);
+		roleManager.assignPermissionToRole("super_admin", "*");
+
+		const user = {
+			roles: ["super_admin"],
+			permissions: [],
+		};
+
+		const canEditAnything = roleManager.hasPermission(user, "edit:documents");
+		expect(canEditAnything).toBe(true);
 	});
 });

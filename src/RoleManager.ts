@@ -12,21 +12,31 @@ export class RoleManager {
 		this.permissionMapper = permissionMapper;
 	}
 
-	createRole(role: Role) {
+	createRole(
+		role: Omit<Role, "permissions"> & { permissions: Permission[] | string[] }
+	) {
+		// Go over role permissions and if they are strings, convert them to Permission objects
+		role.permissions = role.permissions.map((perm) =>
+			typeof perm === "string"
+				? this.permissionMapper.parsePermissionString(perm)
+				: perm
+		);
+
 		if (this.roles.has(role.id)) {
 			throw new Error(`Role with ID ${role.id} already exists.`);
 		}
-		this.roles.set(role.id, role);
+		this.roles.set(role.id, role as Role);
 	}
 
-	createRoles(roles: Role[]) {
+	createRoles(
+		roles: (Omit<Role, "permissions"> & {
+			permissions: Permission[] | string[];
+		})[]
+	) {
 		roles.forEach((role) => this.createRole(role));
 	}
 
-	assignPermissionToRole(
-		roleId: string,
-		permission: Permission | string
-	) {
+	assignPermissionToRole(roleId: string, permission: Permission | string) {
 		const role = this.roles.get(roleId);
 		if (!role) {
 			throw new Error(`Role with ID ${roleId} not found.`);
@@ -113,6 +123,8 @@ export class RoleManager {
 		resource: string,
 		scope?: string
 	): boolean {
+		if (permission.action === "*") return true;
+
 		if (
 			permission.action !== action ||
 			(permission.resource !== "*" && permission.resource !== resource)

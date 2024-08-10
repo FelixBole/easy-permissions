@@ -53,7 +53,7 @@ Roles are collections of permissions. You can define roles and assign permission
 
 ```typescript
 const adminRole = { id: "admin", name: "Admin", permissions: [] };
-const userRole = { id: "user", name: "User", permissions: [] };
+const userRole = { id: "user", name: "User", permissions: ["view:documents"] };
 
 // Create roles using RoleManager
 roleManager.createRole(adminRole);
