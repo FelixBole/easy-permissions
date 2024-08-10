@@ -1,5 +1,5 @@
 {
-	"name": "easy-permissions",
+	"name": "ez-perms",
 	"version": "1.0.0",
 	"description": "A simple and flexible permissions management system for javascript applications.",
 	"main": "dist/index.js",
