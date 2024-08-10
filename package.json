@@ -12,6 +12,9 @@
 		"README.md",
 		"LICENSE.md"
 	],
+	"repository": {
+		"url": "https://github.com/FelixBole/easy-permissions"
+	},
 	"keywords": [
 		"permissions"
 	],
