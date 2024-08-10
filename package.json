@@ -1,8 +1,9 @@
 {
 	"name": "ez-perms",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A simple and flexible permissions management system for javascript applications.",
 	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "tsc",
 		"test": "jest"

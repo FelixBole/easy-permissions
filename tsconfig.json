@@ -4,6 +4,7 @@
 		"module": "commonjs",
 		"lib": ["esnext", "dom"],
 		"jsx": "react-jsx",
+		"declaration": true,
 		"outDir": "./dist/",
 		"noEmit": false,
 		"strict": true,

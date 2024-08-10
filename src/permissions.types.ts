@@ -1,7 +1,7 @@
 /**
  * An individual permission that can be granted to a user or role.
  */
-export interface Permission {
+export type Permission = {
 	/**
 	 * The unique identifier for the permission.
 	 * @example "read:users", "write:documents", "delete:documents:123"
@@ -30,7 +30,7 @@ export interface Permission {
 /**
  * A role that can be granted to a user.
  */
-export interface Role {
+export type Role = {
 	/**
 	 * The unique identifier for the role.
 	 */
